@@ -25,6 +25,25 @@ public class UserRepository {
         return user;
     }
     
+    public User update(User updatedUser) {
+    	
+        if (updatedUser == null || updatedUser.getId() == null) {
+            throw new IllegalArgumentException("Updated user or user ID cannot be null");
+        }
+
+        Optional<User> existingUserOptional = find(updatedUser.getId());
+        if (existingUserOptional.isEmpty()) {
+            return null;
+        }
+
+        User existingUser = existingUserOptional.get();
+        
+        existingUser.setName(updatedUser.getName());
+        existingUser.setLastName(updatedUser.getLastName());
+
+        return existingUser;
+    }
+    
     public Optional<User> find(long userId){
         return dataSource.stream().filter(user -> userId == user.getId()).findFirst();
     }

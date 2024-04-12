@@ -41,7 +41,7 @@ public class UserService {
     public User update(User user){
         this.validate(user);
         this.find(user.getId());
-        return this.userRepository.save(user);
+        return this.userRepository.update(user);
     }
     
     public void delete(long userId){
@@ -49,9 +49,11 @@ public class UserService {
     }
     
     private void validate(User user){
+    	
         if(user == null){
             throw new ValidationException("Not user indicated");
         }
+                
         if(user.getName() == null || user.getName().isBlank()){
             throw new ValidationException("Name is required");
         }
