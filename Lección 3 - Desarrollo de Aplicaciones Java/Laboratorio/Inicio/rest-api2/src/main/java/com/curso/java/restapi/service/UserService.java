@@ -49,11 +49,9 @@ public class UserService {
     }
     
     private void validate(User user){
-    	
         if(user == null){
             throw new ValidationException("Not user indicated");
         }
-                
         if(user.getName() == null || user.getName().isBlank()){
             throw new ValidationException("Name is required");
         }
