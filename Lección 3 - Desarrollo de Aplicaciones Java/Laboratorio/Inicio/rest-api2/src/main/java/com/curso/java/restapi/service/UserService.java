@@ -41,7 +41,7 @@ public class UserService {
     public User update(User user){
         this.validate(user);
         this.find(user.getId());
-        return this.userRepository.update(user);
+        return this.userRepository.save(user);
     }
     
     public void delete(long userId){
